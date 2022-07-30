@@ -1,36 +1,45 @@
 package com.portfolio.mjs.Service;
 
 import com.portfolio.mjs.Entity.Educacion;
-import com.portfolio.mjs.Interface.IEducacionService;
 import com.portfolio.mjs.Repository.IEducacionRepository;
 import java.util.List;
+import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ImpEducacionService implements IEducacionService {
-    @Autowired IEducacionRepository ieducacionRepository;
+@Transactional
+public class ImpEducacionService {
+    @Autowired 
+    IEducacionRepository ieducacionRepository;
        
-    @Override
-    public List<Educacion> getEducacion() {
-       List<Educacion> educacion = ieducacionRepository.findAll();
-       return educacion;
-    }
-
-    @Override
-    public void saveEducacion(Educacion educacion) {
-       ieducacionRepository.save(educacion);
-    }
-
-    @Override
-    public void deleteEducacion(Long id) {
-        ieducacionRepository.deleteById(id);
-    }
-
-    @Override
-    public Educacion findEducacion(Long id) {
-       Educacion educacion = ieducacionRepository.findById(id).orElse(null);
-       return educacion;
+    public List<Educacion> list(){
+       return ieducacionRepository.findAll();
     }
     
+    public Optional <Educacion> getOne(int id) {
+     return ieducacionRepository.findById(id);
+    } 
+    
+    public Optional<Educacion> getByTituloEdu(String tituloEdu){
+        return ieducacionRepository.findByTituloEdu(tituloEdu);
+    }
+    
+    public void save(Educacion educacion) {
+      ieducacionRepository.save(educacion);
+    }
+    
+    public void delete(int id) {
+     ieducacionRepository.deleteById(id);
+    }
+       
+    public boolean existsById (int id){
+        return ieducacionRepository.existsById(id);
+    }
+  
+     public boolean existsByTituloEdu (String tituloEdu){
+       return ieducacionRepository.existsByTituloEdu(tituloEdu);
+    }
+     
 }

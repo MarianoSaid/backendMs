@@ -18,14 +18,6 @@ public class ImpExperienciaService {
       return iexperienciaRepository.findAll();
     }
     
-    public void save(Experiencia expe) {
-      iexperienciaRepository.save(expe);
-    }
-
-    public void delete(int id) {
-     iexperienciaRepository.deleteById(id);
-    }
-
     public Optional <Experiencia> getOne(int id) {
      return iexperienciaRepository.findById(id);
     }
@@ -34,6 +26,14 @@ public class ImpExperienciaService {
         return iexperienciaRepository.findByEmpresaExp(empresaExp);
     }
     
+    public void save(Experiencia expe) {
+      iexperienciaRepository.save(expe);
+    }
+
+    public void delete(int id) {
+     iexperienciaRepository.deleteById(id);
+    }
+
     public boolean existsById (int id){
         return iexperienciaRepository.existsById(id);
     }
