@@ -20,30 +20,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "https://appfrontms.web.app/")
+@CrossOrigin(origins = "https://appfrontms.web.app")
 public class FooterController {
      //Controlador llama a la interfaz del servicio, quien llama al servicio
     @Autowired IFooterService ifooterService;
      
-    @GetMapping("footer/traer")  
+    @GetMapping("/footer/traer")  
         public List<Footer> getFooter(){
             return ifooterService.getFooter();
     }
         
-    @PostMapping("footer/crear")
+    @PostMapping("/footer/crear")
         public String createFooter (@RequestBody Footer footer){
             ifooterService.saveFooter(footer);
             return "El footer fue creado correctamente";
     }
     
-    @DeleteMapping("footer/borrar/{id}")
+    @DeleteMapping("/footer/borrar/{id}")
         public String deleteFooter (@PathVariable Long id){
             ifooterService.deleteFooter(id);
             return "El footer fue eliminado correctamente";
     }        
     
     //URL:PUERTO/footer/editar/1/apellidoFoot&nombreFoot&...
-    @PutMapping("footer/editar/{id}")    
+    @PutMapping("/footer/editar/{id}")    
         public Footer footer (@PathVariable Long id,
                                         @RequestParam("apellidoFoot") String nuevoApellidoFoot,
                                         @RequestParam("nombreFoot") String nuevoNombreFoot,

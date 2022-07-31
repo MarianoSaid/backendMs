@@ -15,31 +15,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "https://appfrontms.web.app/")
+@CrossOrigin(origins = "https://appfrontms.web.app")
 public class HySController {
     
 //Controlador llama a la interfaz del servicio, quien llama al servicio
     @Autowired IHySService ihysService;
      
-    @GetMapping("HyS/traer")  
+    @GetMapping("/HyS/traer")  
         public List<HyS> getHyS(){
             return ihysService.getHyS();
     }
         
-    @PostMapping("HyS/crear")
+    @PostMapping("/HyS/crear")
         public String createHyS (@RequestBody HyS hys){
             ihysService.saveHyS(hys);
             return "La habilidad fue creada correctamente";
     }
     
-    @DeleteMapping("HyS/borrar/{id}")
+    @DeleteMapping("/HyS/borrar/{id}")
         public String deleteHyS (@PathVariable Long id){
             ihysService.deleteHyS(id);
             return "La habilidad fue eliminada correctamente";
     }        
   
     //URL:PUERTO/HyS/editar/1/nombreSkill&percentSkill&...
-    @PutMapping("HyS/editar/{id}")    
+    @PutMapping("/HyS/editar/{id}")    
         public HyS hys (@PathVariable Long id,
                                         @RequestParam("nombreSkill") String nuevoNombreSkill,
                                         @RequestParam("percentSkill") int nuevoPercentSkill,

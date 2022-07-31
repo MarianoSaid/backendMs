@@ -15,28 +15,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "https://appfrontms.web.app/")
+@CrossOrigin(origins = "https://appfrontms.web.app")
 public class ProyectosController {
     @Autowired IProyectosService iproyectosService;
     
-    @GetMapping ("proyectos/traer")
+    @GetMapping ("/proyectos/traer")
     public List<Proyectos> getProyectos(){
        return iproyectosService.getProyectos();
     }  
     
-    @PostMapping("proyectos/crear")
+    @PostMapping("/proyectos/crear")
     public String createProyectos(@RequestBody Proyectos proyectos){
        iproyectosService.saveProyectos(proyectos);
         return "El proyecto fue creado correctamente";
     }
     
-    @DeleteMapping("proyectos/borrar/{id}")
+    @DeleteMapping("/proyectos/borrar/{id}")
        public String deletePersona(@PathVariable Long id){
        iproyectosService.deleteProyectos(id);
        return "El proyecto fue eliminado correctamente";
     }
     //URL:PUERTO/proyectos/editar/5/tituloEdu&startEdu&endEdu&...     
-    @PutMapping("proyectos/editar/{id}")  
+    @PutMapping("/proyectos/editar/{id}")  
         public Proyectos editProyectos(@PathVariable Long id,
                                        @RequestParam("nombreProyecto") String nuevoNombreProyecto,   
                                        @RequestParam("desProyecto") String nuevoDesProyecto,
