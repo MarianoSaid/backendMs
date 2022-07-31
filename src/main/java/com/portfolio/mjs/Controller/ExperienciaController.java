@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/explab")
-@CrossOrigin(origins = "https://appfrontms.web.app")
+@CrossOrigin(origins = "*")
 public class ExperienciaController {
     //Controlador llama a la impl servicio (diferente a persona que llamaba al a interfaz del servicio)
     @Autowired 
